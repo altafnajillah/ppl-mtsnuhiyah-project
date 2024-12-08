@@ -40,7 +40,7 @@
                                             <label for="nama" class="form-label">Nama Lengkap</label>
                                             <input type="text" class="form-control" id="nama" name="nama"
                                                    placeholder="Masukkan nama disini . . ."
-                                                   value="{{ Auth::user()->name }}">
+                                                   value="{{ $pendaftar->name }}">
                                         </div>
                                         <div class="container ml-2 mb-2 form-row">
                                             <div class="form-check col">L
@@ -89,8 +89,6 @@
                                     <div class="dokumenSiswa">
                                         <div class="mb-3">
                                             <label for="foto" class="form-label">Pas Foto</label>
-                                            <a class="btn btn-sm btn-outline-primary" data-toggle="modal"
-                                               data-target="#enlargedImageModal" data-image="{{ $pendaftar->foto }}">Tinjau</a>
                                             <input type="file" class="form-control" id="foto" name="foto"
                                                    accept="image/*">
                                         </div>
@@ -131,12 +129,12 @@
 @endsection
 
 @section('script')
-    <script>
-        $('#enlargedImageModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var imageSrc = button.data('image');
-            var modal = $(this);
-            modal.find('#modalImage').attr('src', imageSrc);
-        });
-    </script>
+{{--    <script>--}}
+{{--        $('#enlargedImageModal').on('show.bs.modal', function (event) {--}}
+{{--            var button = $(event.relatedTarget);--}}
+{{--            var imageSrc = button.data('image');--}}
+{{--            var modal = $(this);--}}
+{{--            modal.find('#modalImage').attr('src', imageSrc);--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection

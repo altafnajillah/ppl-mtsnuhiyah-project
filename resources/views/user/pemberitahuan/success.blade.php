@@ -22,7 +22,7 @@
                             langkah awal menuju perjalanan belajar yang luar biasa. Semoga kamu terus bersemangat, belajar dengan
                             giat, dan meraih prestasi yang membanggakan. Kami percaya bahwa ini adalah awal dari masa depan
                             yang cerah. Selamat menempuh babak baru dalam pendidikanmu!</p>
-                        <p>Anda di tetapkan di kelas : A </p>
+                        <p>Anda di tetapkan di kelas : {{ $siswa->kelas }} </p>
                         <p>Silakan mengikuti OSPEK pada Tanggal 02-12-2024 </p>
                         {{-- end isi aslinya --}}
 

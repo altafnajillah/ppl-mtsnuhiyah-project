@@ -13,55 +13,70 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card-body table-border-style">
+                            <img
+                                src="{{ asset('storage/' . $siswa->foto) }}"
+                                height="200px" alt="Foto diri">
                             <div class="table-responsive">
                                 <table class="table">
                                     <tbody>
                                         <tr>
                                             <th>Nama Lengkap</th>
-                                            <td>Firman</td>
+                                            <td>{{ $siswa->name }}</td>
                                         </tr>
                                         <tr>
                                             <th>NIK</th>
-                                            <td>632301170012</td>
+                                            <td>{{ $siswa->nik }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kelas</th>
+                                            <td>{{ $siswa->kelas }}</td>
                                         </tr>
                                         <tr>
                                             <th>Tanggal Lahir</th>
-                                            <td>2001/02/13</td>
+                                            <td>{{ $siswa->tgl }}</td>
                                         </tr>
                                         <tr>
                                             <th>No Telepon</th>
-                                            <td>08000678712</td>
+                                            <td>{{ $siswa->telp }}</td>
                                         </tr>
                                         <tr>
                                             <th>Jenis Kelamin</th>
-                                            <td>Laki-Laki</td>
+                                            <td>{{ $siswa->jk == "L" ? "Laki-laki" : "Perempuan" }}</td>
                                         </tr>
                                         <tr>
                                             <th>Alamat</th>
-                                            <td>Pambusuang</td>
+                                            <td>{{ $siswa->alamat }}</td>
                                         </tr>
                                         <tr>
                                             <th>Kartu Keluarga</th>
                                             <td>
-                                                <img src="" alt="Foto KK">
+                                                <img src="{{ asset('storage/' . $siswa->kk) }}"
+                                                     height="200px" alt="Foto KK">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Akta Kelahiran</th>
                                             <td>
-                                                <img src="" alt="Foto Akta">
+                                                <img src="{{ asset('storage/' . $siswa->akta) }}"
+                                                     height="200px" alt="Foto Akta">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Surat Keterangan Lulus</th>
                                             <td>
-                                                <img src="" alt="Foto SKL">
+                                                <img src="{{ asset('storage/' . $siswa->skl) }}"
+                                                     height="200px" alt="Foto SKL">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>PIP/KIS/PKH</th>
                                             <td>
-                                                <img src="" alt="Foto PIP/KIS/PKH">
+                                                @if($siswa->kis !== null)
+                                                    <img src="{{ asset('storage/' . $siswa->kis) }}"
+                                                         height="200px" alt="Foto PIP/KIS/PKH">
+                                                @else
+                                                    {{__('Tidak Ada')}}
+                                                @endif
                                             </td>
                                         </tr>
                                     </tbody>

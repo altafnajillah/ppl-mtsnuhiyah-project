@@ -35,7 +35,7 @@
                                     <div class="dataSiswa">
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
+                                            <input type="text" class="form-control" id="nama" name="name"
                                                    placeholder="Masukkan nama disini . . ."
                                                    value="{{ Auth::user()->name }}">
                                         </div>
@@ -81,27 +81,27 @@
                                         <div class="mb-3">
                                             <label for="foto" class="form-label">Pas Foto</label>
                                             <input type="file" class="form-control" id="foto" name="foto"
-                                                   accept="image/*">
+                                                   accept=".png, .jpg, jpeg" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="kk" class="form-label">Kartu Keluarga</label>
-                                            <input type="file" class="form-control" id="kk" name="kk" accept="image/*">
+                                            <input type="file" class="form-control" id="kk" name="kk" accept=".png, .jpg, jpeg" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="akta" class="form-label">Akta Kelahiran</label>
                                             <input type="file" class="form-control" id="akta" name="akta"
-                                                   accept="image/*">
+                                                   accept=".png, .jpg, jpeg" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="skl" class="form-label">Surat Keterangan
                                                 Lulus</label>
                                             <input type="file" class="form-control" id="skl" name="skl"
-                                                   accept="image/*">
+                                                   accept=".png, .jpg, jpeg" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="kis" class="form-label">Kartu PIP/PKH/KIS (jika ada)</label>
                                             <input type="file" class="form-control" id="kis" name="kis"
-                                                   accept="image/*">
+                                                   accept=".png, .jpg, jpeg">
                                         </div>
                                     </div>
                                 </div>

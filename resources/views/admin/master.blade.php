@@ -35,7 +35,7 @@
     <ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">
             <div class="sidebar-brand-icon">
                 <img class="logo" src="{{ asset('tema') }}/img/logo.png" alt="">
             </div>
@@ -90,7 +90,8 @@
                     <path fill-rule="evenodd"
                           d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                 </svg>
-                <span>Logout</span></a>
+                <span>Logout</span>
+            </a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -195,6 +196,30 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-success" href="#" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{--Modal Kelas--}}
+<div class="modal fade" id="classModal" tabindex="-1" role="dialog" aria-labelledby="classModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="classModalLabel">Tentukan Kelas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="classForm">
+                    @csrf <!-- Laravel CSRF protection -->
+                    <div class="form-group">
+                        <label for="className">Kelas Penempatan</label>
+                        <input type="text" class="form-control" id="className" name="className" placeholder="Kelas">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
             </div>
         </div>
     </div>

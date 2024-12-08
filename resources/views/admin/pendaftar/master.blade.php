@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('tema') }}/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('tema') }}/css/custom.css">
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('tema') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -33,7 +35,7 @@
     <ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">
             <div class="sidebar-brand-icon">
                 <img class="logo" src="{{ asset('tema') }}/img/logo.png" alt="">
             </div>
@@ -44,39 +46,40 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ Request::is('dashboard') ? "active" : "" }}">
-            <a class="nav-link" href="{{ route('user.index') }}">
+        <li class="nav-item {{ Request::is('admin') ? "active" : "" }}">
+            <a class="nav-link" href="{{ route('admin.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-house-fill mr-2" viewBox="0 0 16 16">
                     <path
                         d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
                     <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
                 </svg>
-                <span>Beranda</span></a>
+                <span>{{ __('Beranda') }}</span>
+            </a>
         </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <li class="nav-item {{ Request::is('pendaftaran') || Request::is('pendaftaran/edit') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('user.pendaftaran') }}">
+        <li class="nav-item {{ Request::is('admin/pendaftar') ? "active" : "" }}">
+            <a class="nav-link" href="{{ route('admin.pendaftar') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-person-lines-fill mr-2" viewBox="0 0 16 16">
                     <path
                         d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
                 </svg>
-                <span>Pendaftaran Siswa</span></a>
+                <span>Daftar Pendaftar</span></a>
         </li>
-        <li class="nav-item {{ Request::is('pemberitahuan') ? "active" : ""  }}">
-            <a class="nav-link" href="{{ route('user.pemberitahuan', Auth::user()->status) }}">
+        <li class="nav-item {{ Request::is('admin/siswa') ? "active" : "" }}">
+            <a class="nav-link" href="{{ route('admin.siswa') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-mailbox2-flag mr-2" viewBox="0 0 16 16">
+                     class="bi bi-person-rolodex mr-2" viewBox="0 0 16 16">
+                    <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                     <path
-                        d="M10.5 8.5V3.707l.854-.853A.5.5 0 0 0 11.5 2.5v-2A.5.5 0 0 0 11 0H9.5a.5.5 0 0 0-.5.5v8z"/>
-                    <path
-                        d="M4 3h4v1H6.646A4 4 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3V3a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4m.585 4.157C4.836 7.264 5 7.334 5 7a1 1 0 0 0-2 0c0 .334.164.264.415.157C3.58 7.087 3.782 7 4 7s.42.086.585.157"/>
+                        d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1z"/>
                 </svg>
-                <span>Pemberitahuan</span></a>
+                <span>Manajemen Siswa</span>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -87,7 +90,8 @@
                     <path fill-rule="evenodd"
                           d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                 </svg>
-                <span>Logout</span></a>
+                <span>Logout</span>
+            </a>
         </li>
 
         <!-- Sidebar Toggler (Sidebar) -->
@@ -114,10 +118,14 @@
 
                 <h1 class="mt-3 ml-3">SELAMAT DATANG</h1>
 
+                {{--</form>--}}
+
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <div class="topbar-divider d-none d-sm-block">
+
+                    </div>
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
@@ -130,8 +138,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#" data-toggle="modal"
-                               data-target="#logoutModal">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{__('Logout')}}
                             </a>
@@ -140,7 +147,6 @@
                             </form>
                         </div>
                     </li>
-
                 </ul>
 
             </nav>
@@ -195,21 +201,53 @@
     </div>
 </div>
 
-<!-- Modal for Enlarged Image -->
-<div class="modal fade" id="enlargedImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargedImageModalLabel"
+{{--Modal Kelas--}}
+<div class="modal fade" id="classModal" tabindex="-1" role="dialog" aria-labelledby="classModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title" id="enlargedImageModalLabel">Tinjau Gambar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            <div class="modal-header">
+                <h5 class="modal-title" id="classModalLabel">Tentukan Kelas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body"><img id="modalImage" class="img-fluid" src="/public/storage/img/foto/GUnCXjnccK5Y1J8c64KxU1ivRuBRQbviYh0VcK0Y.png" alt="image"></div>
+            <div class="modal-body">
+                <form id="classForm" action="{{ route('admin.siswa.store', ['nik' => $pendaftar->nik]) }}"
+                      method="POST">
+                    @csrf <!-- Laravel CSRF protection -->
+                    <div class="form-group">
+                        <label for="className">Kelas Penempatan</label>
+                        <input type="text" class="form-control" id="className" name="className" placeholder="Kelas">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-@yield('script')
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="classModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title" id="classModalLabel">Menolak berkas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="classForm" method="POST" action="{{ route('admin.pendaftar.refused', ['nik' => $pendaftar->nik]) }}">
+                    @csrf <!-- Laravel CSRF protection -->
+                    <div class="form-group"><label for="keterangan">Deskripsi Penolakan :</label> <textarea
+                            class="form-control" id="keterangan" name="keterangan"
+                            placeholder="Masukkan Deskripsi Penolakan"></textarea></div>
+                    <button type="submit" class="btn btn-danger">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('tema') }}/vendor/jquery/jquery.min.js"></script>
@@ -227,6 +265,13 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('tema') }}/js/demo/chart-area-demo.js"></script>
 <script src="{{ asset('tema') }}/js/demo/chart-pie-demo.js"></script>
+
+<!-- Page level plugins -->
+<script src="{{ asset('tema') }}/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('tema') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ asset('tema') }}/js/demo/datatables-demo.js"></script>
 
 </body>
 

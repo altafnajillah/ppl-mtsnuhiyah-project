@@ -13,8 +13,9 @@ class PendaftarSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('pendaftar')->insert([
+        DB::table('pendaftars')->insert([
             [
+                'name' => 'Firmansyah Assagaf',
                 'nik' => '7604010202020001',
                 'tgl' => Carbon::create(2002, 2, 2),
                 'telp' => '081234567890',
@@ -27,6 +28,7 @@ class PendaftarSeeder extends Seeder
                 'kis' => null,
             ],
             [
+                'name' => 'Hasnur',
                 'nik' => '7604010202020002',
                 'tgl' => Carbon::create(2002, 2, 2),
                 'telp' => '081234567891',

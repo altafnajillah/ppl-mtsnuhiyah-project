@@ -22,16 +22,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($siswas as $k => $siswa)
                             <tr>
-                                <td>1</td>
-                                <td>6323011700012</td>
-                                <td>Firman</td>
-                                <td>Pambusuang</td>
-                                <td>2001/02/13</td>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $siswa->nik }}</td>
+                                <td>{{ $siswa->name }}</td>
+                                <td>{{ $siswa->alamat }}</td>
+                                <td>{{ $siswa->telp }}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{ route('admin.siswa.detail') }}">Detail</a>
+                                    <a class="btn btn-primary" href="{{ route('admin.siswa.detail', ['id' => $siswa->id]) }}">Detail</a>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserRouteController;
@@ -36,6 +37,9 @@ Route::get('/world', function () {
     return view('welcome');
 });
 
+//Route::get('/private/{filename}', function ($filename) {})->name('private.image');
+Route::get('/private/{filename}', [ImageController::class, 'show'])->name('private.image');
+
 Auth::routes();
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -43,7 +47,7 @@ Auth::routes();
 Route::middleware(['auth', 'user.access:admin'])->group(function () {
 
     Route::get('/home', function () {
-        return redirect()->route('admin.index');
+        return redirect('/admin');
     });
 
     Route::get('/admin', [AdminRouteController::class, 'index'])->name('admin.index');
@@ -51,24 +55,26 @@ Route::middleware(['auth', 'user.access:admin'])->group(function () {
     Route::get('/admin/pendaftar', [PendaftarController::class, 'index'])->name('admin.pendaftar');
     Route::get('/admin/pendaftar/detail/{id}', [PendaftarController::class, 'show'])->name('admin.pendaftar.detail');
 
-    Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
-    Route::get('/admin/siswa/detail', [SiswaController::class, 'show'])->name('admin.siswa.detail');
+    Route::post('/admin/pendaftar/refused/{nik}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.refused');
 
+    Route::get('/admin/siswa', [SiswaController::class, 'index'])->name('admin.siswa');
+    Route::get('/admin/siswa/detail/{id}', [SiswaController::class, 'show'])->name('admin.siswa.detail');
+
+    Route::post('/admin/siswa/store/{nik}', [SiswaController::class, 'store'])->name('admin.siswa.store');
 
 });
 
 Route::middleware(['auth', 'user.access:user'])->group(function () {
 
     Route::get('/home', function () {
-        return redirect()->route('user.index');
+        return redirect('/dashboard');
     });
 
     Route::get('/dashboard', [UserRouteController::class, 'index'])->name('user.index');
-    Route::get('/pemberitahuan', [UserRouteController::class, 'pemberitahuan'])->name('user.pemberitahuan');
+    Route::get('/pemberitahuan/{status}', [UserRouteController::class, 'pemberitahuan'])->name('user.pemberitahuan');
     Route::get('/pendaftaran', [UserRouteController::class, 'pendaftaran'])->name('user.pendaftaran');
 
     Route::post('/pendaftaran/store', [PendaftarController::class, 'store'])->name('user.pendaftar.store');
     Route::get('/pendaftaran/edit', [PendaftarController::class, 'edit'])->name('user.pendaftar.edit');
     Route::put('/pendaftaran/update', [PendaftarController::class, 'update'])->name('user.pendaftar.update');
-
 });

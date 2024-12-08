@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('email', 50);
             $table->enum('jk', ['L', 'P']);
             $table->string('alamat');
+            $table->string('foto')->nullable();
             $table->string('kk')->nullable();
             $table->string('akta')->nullable();
             $table->string('skl')->nullable();
             $table->string('kis')->nullable();
+            $table->string('status')->default('inserting');
             $table->timestamps();
         });
     }
