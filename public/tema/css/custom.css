@@ -1,0 +1,19 @@
+.logo{
+    width: 60px;
+    height: 70px;
+    margin-left: 10px;
+}
+
+.mainContent{
+    color: #333;
+}
+
+.dataSiswa .form-control{
+    width: 100%;
+}
+
+.custom-btn{
+    width: 100%;
+    margin: 0 12px;
+    margin-top: 10px;
+}
